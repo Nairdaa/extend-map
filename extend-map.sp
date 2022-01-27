@@ -6,8 +6,6 @@
 
 ConVar gCV_TimeLimit;
 
-int gI_NewTime;
-
 public Plugin myinfo =
 {
 	name = "Extend map time",
@@ -35,9 +33,10 @@ public Action Command_Extend(int client, int args)
 	GetCmdArg(1, sArg, sizeof(sArg));
 
 	int iMinutes = StringToInt(sArg);
-
-	gI_NewTime = gCV_TimeLimit.IntValue + iMinutes;
-	gCV_TimeLimit.SetInt(gI_NewTime);
+	int iNewTime;
+	
+	iNewTime = gCV_TimeLimit.IntValue + iMinutes;
+	gCV_TimeLimit.SetInt(iNewTime);
 
 	ReplyToCommand(client, "Extended by: %i minutes.", iMinutes);
 
